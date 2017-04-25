@@ -3,11 +3,23 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   describe 'validations' do
     it 'requires a username and a password upon creation' do
-      user = build(:user, username: nil, password: nil)
+      user1 = build(:user, username: nil, password: nil)
+      user2 = build(:user, password: nil)
+      user3 = build(:user, username: nil)
 
-      expect(user.valid?).to equal(false)
-      expect(user.errors.full_messages).to eq([
+      expect(user1.valid?).to equal(false)
+      expect(user1.errors.full_messages).to eq([
         "Password can't be blank",
+        "Username can't be blank"
+        ])
+
+      expect(user2.valid?).to equal(false)
+      expect(user2.errors.full_messages).to eq([
+        "Password can't be blank"
+        ])
+
+      expect(user3.valid?).to equal(false)
+      expect(user3.errors.full_messages).to eq([
         "Username can't be blank"
         ])
     end
