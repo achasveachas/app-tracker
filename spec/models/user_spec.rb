@@ -46,7 +46,12 @@ RSpec.describe User, type: :model do
   end
 
   describe 'relationships' do
-    it 'has many applications'
+    it 'has many applications' do
+      user = create(:user)
+      user.applications.create(company: "Google", action: "email", complete: false)
+
+      expect(user.applications.first).not_to eq(nil)
+    end
   end
 
 end
