@@ -12,7 +12,15 @@ RSpec.describe User, type: :model do
         ])
     end
 
-    it 'requires that the username be unique'
+    it 'requires that the username be unique' do
+      create(:user)
+      user = build(:user)
+
+      expect(user.valid?).to equal(false)
+      expect(user.errors.full_messages).to eq([
+        "Username has already been taken"
+        ])
+    end
 
   end
 
