@@ -1,5 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe Application, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'relationships' do
+    it 'belongs to a user' do
+      user = create(:user)
+      app = user.applications.create(company: "Google", action: "email", complete: false)
+
+      expect(app.user.id).to eq(user.id)
+    end
+  end
 end
