@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 20170426031958) do
 
   create_table "applications", force: :cascade do |t|
     t.integer  "user_id"
+    t.string   "company"
     t.string   "contact_name"
     t.string   "contact_title"
     t.string   "date"
@@ -25,11 +26,11 @@ ActiveRecord::Schema.define(version: 20170426031958) do
     t.string   "job_title"
     t.string   "job_url"
     t.text     "notes"
-    t.boolean  "complete"
+    t.boolean  "complete",      default: false
     t.string   "next_step"
     t.string   "status"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
     t.index ["user_id"], name: "index_applications_on_user_id", using: :btree
   end
 

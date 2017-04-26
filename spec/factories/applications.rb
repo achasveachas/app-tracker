@@ -1,16 +1,17 @@
 FactoryGirl.define do
   factory :application do
-    user nil
-    contact_name "MyString"
-    contact_title "MyString"
-    date "MyString"
-    action "MyString"
+    user
+    company "SpaceX"
+    contact_name "Elon Musk"
+    contact_title "Founder"
+    date "12/30"
+    action "Meeting"
     first_contact false
-    job_title "MyString"
-    job_url "MyString"
-    notes "MyText"
+    job_title "Developer"
+    job_url "www.spacex.com"
+    notes nil
     complete false
-    next_step "MyString"
-    status "MyString"
+    next_step "Get Job"
+    status nil
   end
 end
