@@ -14,7 +14,7 @@ RSpec.describe "API::V1::Users", type: :request do
           }
         }
 
-        post "/api/v1/user",
+        post "/api/v1/users",
           params: params.to_json,
           headers: { 'Content-Type': 'application/json'}
 
