@@ -52,6 +52,16 @@ RSpec.describe User, type: :model do
 
       expect(user.applications.first).not_to eq(nil)
     end
+
+    it "destroys its applications when the user is deleted" do
+      user = create(:user)
+      app = user.applications.create(company: "Google", action: "email", complete: false)
+
+      user.destroy
+      app = Application.find_by(id: app.id)
+
+      expect(app).to eq(nil)
+    end
   end
 
 end

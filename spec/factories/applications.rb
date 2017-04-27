@@ -1,15 +1,15 @@
 FactoryGirl.define do
   factory :application do
     user
-    company "SpaceX"
-    contact_name "Elon Musk"
-    contact_title "Founder"
-    date "12/30"
+    company Faker::Company.name
+    contact_name Faker::Name.name
+    contact_title Faker::Job.title
+    date Faker::Date.forward
     action "Meeting"
     first_contact false
-    job_title "Developer"
-    job_url "www.spacex.com"
-    notes nil
+    job_title Faker::Job.title
+    job_url Faker::Internet.url
+    notes Faker::Hipster.paragraph
     complete false
     next_step "Get Job"
     status nil
