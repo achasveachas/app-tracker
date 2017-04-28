@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "API::V1::Applications", type: :request do
 
-  befor(:each) do
+  before(:each) do
     @user = create(:user)
     @application = @user.applications.create(company: "Google")
     @token = Auth.create_token(@user.id)
@@ -22,7 +22,7 @@ RSpec.describe "API::V1::Applications", type: :request do
     responses << response
     response_bodies << JSON.parse(response.body)
 
-    patch "/api/v1/users/#{@user.id}/applications/#{@application.id}", params: {comapny: "Yahoo"}, headers: @tokenless_headers
+    post "/api/v1/users/#{@user.id}/applications/#{@application.id}", params: {comapny: "Yahoo"}, headers: @tokenless_headers
     responses << response
     response_bodies << JSON.parse(response.body)
 
