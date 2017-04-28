@@ -18,9 +18,9 @@ RSpec.describe "API::V1::Applications", type: :request do
     responses = []
     response_bodies = []
 
-    post "/api/v1/users/#{@user.id}/applications", params: {comapny: "Yahoo"}, headers: @tokenless_headers
-    responses << response
-    response_bodies << JSON.parse(response.body)
+    # post "/api/v1/users/#{@user.id}/applications", params: {comapny: "Yahoo"}, headers: @tokenless_headers
+    # responses << response
+    # response_bodies << JSON.parse(response.body)
 
     post "/api/v1/users/#{@user.id}/applications/#{@application.id}", params: {comapny: "Yahoo"}, headers: @tokenless_headers
     responses << response
