@@ -7,6 +7,10 @@ RSpec.describe "API::V1::Users", type: :request do
     describe "on success" do
 
       before(:each) do
+        User.create(username: "testuser", password: "testtest")
+      end
+
+      before(:each) do
         params = {
           user: {
             username: "testuser",
@@ -77,7 +81,7 @@ RSpec.describe "API::V1::Users", type: :request do
 
         body = JSON.parse(response.body)
 
-        expect(response.status).to eq(403)
+        expect(response.status).to eq(500)
         expect(body["errors"]).to eq({
           "password"=>["Password does not match"]
         })
