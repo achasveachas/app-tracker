@@ -18,16 +18,16 @@ RSpec.describe "API::V1::Applications", type: :request do
     responses = []
     response_bodies = []
 
-    post "/api/v1/users/#{@user.id}/applications", params: {comapny: "Yahoo"}, headers: @tokenless_headers
+    post "/api/v1/users/#{@user.id}/applications", params: {}, headers: @tokenless_headers
     responses << response
     response_bodies << JSON.parse(response.body)
 
-    post "/api/v1/users/#{@user.id}/applications/#{@application.id}", params: {comapny: "Yahoo"}, headers: @tokenless_headers
+    patch "/api/v1/users/#{@user.id}/applications/#{@application.id}", params: {}, headers: @tokenless_headers
     responses << response
     response_bodies << JSON.parse(response.body)
 
     responses.each {|r| expect(r).to have_http_status(403)}
-    response_bodies.each {|b| expect(b["errors"].to eq([{"message" => "Token is invalid"}]))}
+    response_bodies.each {|body| expect(body["errors"]).to eq([{"message" => "You must include a JWT token"}])}
   end
 
 end
