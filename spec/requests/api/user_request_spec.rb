@@ -91,7 +91,7 @@ RSpec.describe "API::V1::Users", type: :request do
         body = JSON.parse(response.body)
 
         expect(response.status).to eq(404)
-        expect(body["errors"]).to eq([{"message": "Page not found"}])
+        expect(body["errors"]).to eq([{"message"=> "Page not found"}])
 
       end
     end
