@@ -87,8 +87,8 @@ RSpec.describe "API::V1::Applications", type: :request do
           body = JSON.parse(response.body)
 
           expect(response.status).to eq(200)
-          expect(body['applicatio']).not_to be(nil)
-          expect(body['application']['company']).to eq(@application.company)
+          expect(body['application']).not_to eq(nil)
+          expect(body['application']['id']).to eq(@application.id)
         end
 
       end
