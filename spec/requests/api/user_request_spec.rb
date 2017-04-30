@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "API::V1::Users", type: :request do
 
-  describe "/POST /users" do
+  describe "POST /users" do
 
     describe "on success" do
 
@@ -27,7 +27,7 @@ RSpec.describe "API::V1::Users", type: :request do
       end
 
       it "returns the new user and a JWT token" do
-        body = JSON.parse(response.body)
+        body = JSON.parse(@response.body)
 
         expect(@response.status).to eq(200)
         expect(body['token']).not_to eq(nil)
@@ -59,6 +59,27 @@ RSpec.describe "API::V1::Users", type: :request do
           "password"=>["can't be blank"],
           "username"=>["can't be blank"]
         })
+      end
+    end
+  end
+
+  describe "GET /users/:id" do
+
+    describe "on success" do
+      before(:each) do
+        @user = create(:user)
+      end
+
+      it "returns a list of all users" do
+        get "/api/v1/users/#{@user.id}"
+
+        body = JSON.parse(response.body)
+
+        expect(response.status).to eq(200)
+        expect(body['users']['id']).to eq(@user.id)
+        expect(body['user']['username']).to eq(@user.username)
+        expect(body['user']['password_digest']).to eq(nil)
+
       end
     end
   end

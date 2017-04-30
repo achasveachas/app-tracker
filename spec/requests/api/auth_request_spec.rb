@@ -88,10 +88,6 @@ RSpec.describe "API::V1::Users", type: :request do
   describe 'POST /auth/refresh' do
     describe "on success" do
 
-      before(:each) do
-
-      end
-
       it "returns existing user (from the headers) and JWT token" do
         token = Auth.create_token(@user.id)
 
