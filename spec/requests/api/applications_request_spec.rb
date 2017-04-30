@@ -57,7 +57,14 @@ RSpec.describe "API::V1::Applications", type: :request do
         expect(body['applications'].size).to eq(3)
       end
 
-      it "doesn't return applications belonging to other users"
+      it "doesn't return applications belonging to other users" do
+        user2 = User.create(username: "user2", password: "password2")
+        application2 = user2.applications.create(company: "Wrong Company")
+
+        get "/api/v1/users/#{@user.id}/applications"
+        body = JSON.parse(response.body)
+        expect(body['applications'].last['user_id']).not_to eq(user2.id)
+      end
     end
 
   end
