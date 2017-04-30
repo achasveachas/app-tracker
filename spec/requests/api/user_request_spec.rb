@@ -82,5 +82,18 @@ RSpec.describe "API::V1::Users", type: :request do
 
       end
     end
+
+    describe "on failure" do
+      it "returns a status of 404 with an error message" do
+
+        get "/api/v1/users/5"
+
+        body = JSON.parse(response.body)
+
+        expect(response.status).to eq(404)
+        expect(body["errors"]).to eq([{"message": "Page not found"}])
+
+      end
+    end
   end
 end
