@@ -9,7 +9,9 @@ RSpec.describe "API::V1::Applications", type: :request do
       @application = @user.applications.create(company: Faker::Company.name)
       @token = Auth.create_token(@user.id)
       @token_headers = {
-        'Content-Type': 'application/json'
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': "Bearer: #{@token}"
       }
       @tokenless_headers = {
         'Content-Type': 'application/json',
@@ -42,6 +44,13 @@ RSpec.describe "API::V1::Applications", type: :request do
       3.times do
         @user.applications.create(company: Faker::Company.name)
       end
+      @application = @user.applications.first
+      @token = Auth.create_token(@user.id)
+      @token_headers = {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': "Bearer: #{@token}"
+      }
     end
 
     describe "GET /api/v1/users/:id/applications" do
@@ -67,6 +76,23 @@ RSpec.describe "API::V1::Applications", type: :request do
       end
     end
 
+    describe "GET /api/v1.users/:user_id/applications/:id" do
+
+      describe "on success" do
+
+        it "returns on application based on its id" do
+
+          get "/api/v1/users/#{@user.id}/applications/#{@application.id}"
+
+          body = JSON.parse(response.body)
+
+          expect(response.status).to eq(200)
+          expect(body['applicatio']).not_to be(nil)
+          expect(body['application']['company']).to eq(@application.company)
+        end
+
+      end
+    end
   end
 
 end
