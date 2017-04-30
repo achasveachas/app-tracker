@@ -14,7 +14,7 @@ class Api::V1::UsersController < ApplicationController
   def show
     @user = User.find_by(id: params[:id])
     if @user
-      render 'users/user_with_token.json.jbuilder', user: @user
+      render 'users/user_without_token.json.jbuilder', user: @user
     else
       render json: {
         errors: [

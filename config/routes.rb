@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :users, only: [:create, :show] do
 
-        resources :applications, only: [:index, :create, :update]
+        resources :applications, only: [:index, :show, :create, :update]
 
       end
       post'/auth', to: "auth#login"
