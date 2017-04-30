@@ -76,7 +76,7 @@ RSpec.describe "API::V1::Users", type: :request do
         body = JSON.parse(response.body)
 
         expect(response.status).to eq(200)
-        expect(body['users']['id']).to eq(@user.id)
+        expect(body['user']['id']).to eq(@user.id)
         expect(body['user']['username']).to eq(@user.username)
         expect(body['user']['password_digest']).to eq(nil)
 
