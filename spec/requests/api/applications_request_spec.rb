@@ -22,6 +22,7 @@ RSpec.describe "API::V1::Applications", type: :request do
     responses << response
     response_bodies << JSON.parse(response.body)
 
+
     patch "/api/v1/users/#{@user.id}/applications/#{@application.id}", params: {}, headers: @tokenless_headers
     responses << response
     response_bodies << JSON.parse(response.body)
