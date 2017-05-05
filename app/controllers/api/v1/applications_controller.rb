@@ -3,7 +3,7 @@ class Api::V1::ApplicationsController < ApplicationController
 
   def index
     @applications = User.find_by(id: params[:user_id])&.applications&.sort
-    if @applications
+    if @applications.size > 0
       render 'applications/applications.json.jbuilder', applications: @applications
     else
       render json: {
