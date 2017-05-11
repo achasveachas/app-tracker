@@ -56,7 +56,7 @@ RSpec.describe "API::V1::Users", type: :request do
 
         expect(response.status).to eq(500)
         expect(body["errors"]).to eq({
-          "password"=>["can't be blank"],
+          "password"=>["can't be blank", 'is too short (minimum is 8 characters)'],
           "username"=>["can't be blank"]
         })
       end

@@ -10,12 +10,14 @@ RSpec.describe User, type: :model do
       expect(user1.valid?).to equal(false)
       expect(user1.errors.full_messages).to eq([
         "Password can't be blank",
+        'Password is too short (minimum is 8 characters)',
         "Username can't be blank"
         ])
 
       expect(user2.valid?).to equal(false)
       expect(user2.errors.full_messages).to eq([
-        "Password can't be blank"
+        "Password can't be blank",
+        'Password is too short (minimum is 8 characters)'
         ])
 
       expect(user3.valid?).to equal(false)
@@ -31,6 +33,16 @@ RSpec.describe User, type: :model do
       expect(user.valid?).to equal(false)
       expect(user.errors.full_messages).to eq([
         "Username has already been taken"
+        ])
+    end
+
+    it 'requires that a password be at least 8 characters long' do
+      user1 = build(:user, password: 'short')
+      user2 = build(:user, password: 'notshort')
+
+      expect(user1.valid?).to equal(false)
+      expect(user1.errors.full_messages).to eq([
+        "Password is too short (minimum is 8 characters)"
         ])
     end
 
