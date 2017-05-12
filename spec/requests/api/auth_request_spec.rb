@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe "API::V1::Users", type: :request do
 
   before(:each) do
-    @user = User.create(username: "testuser", password: "testtest")
+    @user = User.create(username: "testuser", password: "testtest", name: "testname")
   end
 
   describe "/POST /auth" do
@@ -33,6 +33,7 @@ RSpec.describe "API::V1::Users", type: :request do
         expect(body['token']).not_to eq(nil)
         expect(body['user']['id']).not_to eq(nil)
         expect(body['user']['username']).to eq("testuser")
+        expect(body['user']['name']).to eq("testname")
         expect(body['user']['password_digest']).to eq(nil)
 
       end
@@ -103,6 +104,7 @@ RSpec.describe "API::V1::Users", type: :request do
         expect(body['token']).not_to eq(nil)
         expect(body['user']['id']).not_to eq(nil)
         expect(body['user']['username']).to eq("testuser")
+        expect(body['user']['name']).to eq("testname")
         expect(body['user']['password_digest']).to eq(nil)
 
       end

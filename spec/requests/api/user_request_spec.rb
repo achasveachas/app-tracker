@@ -10,7 +10,8 @@ RSpec.describe "API::V1::Users", type: :request do
         params = {
           user: {
             username: "testuser",
-            password: "testtest"
+            password: "testtest",
+            name: "testname"
           }
         }
 
@@ -33,6 +34,7 @@ RSpec.describe "API::V1::Users", type: :request do
         expect(body['token']).not_to eq(nil)
         expect(body['user']['id']).not_to eq(nil)
         expect(body['user']['username']).to eq("testuser")
+        expect(body['user']['name']).to eq("testname")
         expect(body['user']['password_digest']).to eq(nil)
 
       end
@@ -78,6 +80,7 @@ RSpec.describe "API::V1::Users", type: :request do
         expect(response.status).to eq(200)
         expect(body['user']['id']).to eq(@user.id)
         expect(body['user']['username']).to eq(@user.username)
+        expect(body['user']['name']).to eq(@user.name)
         expect(body['user']['password_digest']).to eq(nil)
 
       end
