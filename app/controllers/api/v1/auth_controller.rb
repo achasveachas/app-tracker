@@ -12,7 +12,6 @@ class Api::V1::AuthController < ApplicationController
     else
       render json: {
         errors: ["Password does not match"]
-        }
       }, status: 500
     end
   end
