@@ -5,4 +5,8 @@ class User < ApplicationRecord
   validates :username, presence: true
   validates :username, uniqueness: true
   validates :password, length: {minimum: 8}
+
+  before_validation do
+    self.name = self.name.capitalize if self.name
+  end
 end
