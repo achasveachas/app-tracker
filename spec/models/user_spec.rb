@@ -36,12 +36,12 @@ RSpec.describe User, type: :model do
         ])
     end
 
-    it 'accepts an optional "name" attribute' do
-      user = create(:user)
+    it 'accepts an optional "name" attribute and capitalizes it' do
+      user = create(:user, name: "yechiel")
 
       expect(user.valid?).to equal(true)
       expect(user).to have_attribute(:name)
-      expect(user.name).to be_a_kind_of(String)
+      expect(user.name).to eq("Yechiel")
     end
 
     it 'requires that a password be at least 8 characters long' do
