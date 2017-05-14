@@ -33,7 +33,7 @@ RSpec.describe "API::V1::Users", type: :request do
         expect(body['token']).not_to eq(nil)
         expect(body['user']['id']).not_to eq(nil)
         expect(body['user']['username']).to eq("testuser")
-        expect(body['user']['name']).to eq("testname")
+        expect(body['user']['name']).to eq("Testname")
         expect(body['user']['password_digest']).to eq(nil)
 
       end
@@ -104,7 +104,7 @@ RSpec.describe "API::V1::Users", type: :request do
         expect(body['token']).not_to eq(nil)
         expect(body['user']['id']).not_to eq(nil)
         expect(body['user']['username']).to eq("testuser")
-        expect(body['user']['name']).to eq("testname")
+        expect(body['user']['name']).to eq("Testname")
         expect(body['user']['password_digest']).to eq(nil)
 
       end
