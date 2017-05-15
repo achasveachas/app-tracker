@@ -3,9 +3,9 @@ class Api::V1::ApplicationsController < ApplicationController
 
   def index
 
-    @applications = User.find_by(id: params[:user_id])&.applications&.sort
+    @applications = User.find_by(id: params[:user_id])&.applications
     render 'applications/applications.json.jbuilder', applications: @applications
-    
+
   end
 
   def show
