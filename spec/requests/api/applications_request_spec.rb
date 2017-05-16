@@ -158,6 +158,56 @@ RSpec.describe "API::V1::Applications", type: :request do
       end
     end
 
+    describe "PATCH /api/v1/users/:id/applications" do
+      params = {
+        application: {
+          company: 'Google',
+          contact_name: 'Larry Page',
+          contact_title: 'CEO',
+          date: '05/15/17',
+          action: "Meeting",
+          first_contact: false,
+          job_title: 'Lead Developer',
+          job_url: 'google.com',
+          notes: 'Test data',
+          complete: false,
+          next_step: "Get Job",
+          status: nil
+        }
+      }
+
+      before(:each) do
+        patch "/api/v1/users/#{@user.id}/applications/#{@user.applications.last.id}",
+          params: params.to_json,
+          headers: @token_headers
+
+        @body = JSON.parse(response.body)
+      end
+
+      it "updates the application" do
+
+        expect(@application.company).to eq(params[:application][:company])
+        expect(@application.contact_name).to eq(params[:application][:contact_name])
+        expect(@application.contact_title).to eq(params[:application][:contact_title])
+        expect(@application.date).to eq(params[:application][:date])
+        expect(@application.action).to eq(params[:application][:action])
+        expect(@application.first_contact).to eq(params[:application][:first_contact])
+        expect(@application.job_title).to eq(params[:application][:job_title])
+        expect(@application.job_url).to eq(params[:application][:job_url])
+        expect(@application.notes).to eq(params[:application][:notes])
+        expect(@application.complete).to eq(params[:application][:complete])
+        expect(@application.next_step).to eq(params[:application][:next_step])
+        expect(@application.status).to eq(params[:application][:status])
+      end
+
+      it "returns the updated Application" do
+        application = Application.last
+
+        expect(@body['application']['id']).to eq(application.id)
+        expect(@body['application']['company']).to eq(application.company)
+      end
+    end
+
     describe "DELETE /api/v1.users/:user_id/applications/:id" do
 
       describe "on success" do
