@@ -163,8 +163,8 @@ RSpec.describe "API::V1::Applications", type: :request do
       describe "on success" do
 
         it "deletes the application and returns the new list of applications" do
-
-          delete "/api/v1/users/#{@user.id}/applications/#{@application.id}"
+          delete "/api/v1/users/#{@user.id}/applications/#{@application.id}",
+            headers: @token_headers
 
           body = JSON.parse(response.body)
 

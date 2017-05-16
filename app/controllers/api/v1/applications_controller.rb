@@ -1,5 +1,5 @@
 class Api::V1::ApplicationsController < ApplicationController
-  before_action :authenticate_token!, only: [:create, :update]
+  before_action :authenticate_token!, only: [:create, :update, :destroy]
 
   def index
 
@@ -43,6 +43,12 @@ class Api::V1::ApplicationsController < ApplicationController
 
   def update
 
+  end
+
+  def destroy
+    Application.find_by(id: params[:id]).destroy
+    @applications = User.find_by(id: params[:user_id])&.applications
+    render 'applications/applications.json.jbuilder', applications: @applications
   end
 
   private
