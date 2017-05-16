@@ -42,7 +42,23 @@ class Api::V1::ApplicationsController < ApplicationController
   end
 
   def update
-
+    @user = User.find_by(id: params[:user_id])
+    if @user.id == current_user.id
+      @application = @user.applications.find_by(id: params[:id])
+      if @application.update_attributes(application_params)
+        render 'applications/application.json.jbuilder', application: @application
+      else
+        render json: {
+          errors: @application.errors.full_messages
+        }, status: 500
+      end
+    else
+      render json: {
+        errors: [
+          {message: "You do not have permission to edit this application."}
+        ]
+      }, status: 403
+    end
   end
 
   def destroy
