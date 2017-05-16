@@ -127,8 +127,10 @@ RSpec.describe "API::V1::Applications", type: :request do
 
       before(:each) do
         post "/api/v1/users/#{@user.id}/applications",
-        params: params.to_json,
-        headers: @token_headers
+          params: params.to_json,
+          headers: @token_headers
+
+        @body = JSON.parse(response.body)
       end
 
       it "creates a new instance of an Application" do
@@ -149,7 +151,10 @@ RSpec.describe "API::V1::Applications", type: :request do
       end
 
       it "returns the new Application" do
+        application = Application.last
 
+        expect(@body['application']['id']).to eq(application.id)
+        expect(@body['application']['company']).to eq(application.company)
       end
     end
   end
