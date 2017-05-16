@@ -106,6 +106,52 @@ RSpec.describe "API::V1::Applications", type: :request do
         end
       end
     end
+
+    describe "POST /api/v1/users/:id/applications" do
+      params = {
+        application: {
+          company: 'Google',
+          contact_name: 'Larry Page',
+          contact_title: 'CEO',
+          date: '05/15/17',
+          action: "Meeting",
+          first_contact: false,
+          job_title: 'Lead Developer',
+          job_url: 'google.com',
+          notes: 'Test data',
+          complete: 'false',
+          next_step: "Get Job",
+          status: nil
+        }
+      }
+
+      before(:each) do
+        post "/api/v1/users/#{@user.id}/applications",
+        params: params.to_json,
+        headers: @token_headers
+      end
+
+      it "creates a new instance of an Application" do
+
+        application = Application.last
+        expect(application.company).to eq(params[:application][:company])
+        expect(application.company).to eq(params[:application][:contact_name])
+        expect(application.company).to eq(params[:application][:contact_title])
+        expect(application.company).to eq(params[:application][:date])
+        expect(application.company).to eq(params[:application][:action])
+        expect(application.company).to eq(params[:application][:first_contact])
+        expect(application.company).to eq(params[:application][:job_title])
+        expect(application.company).to eq(params[:application][:job_url])
+        expect(application.company).to eq(params[:application][:notes])
+        expect(application.company).to eq(params[:application][:complete])
+        expect(application.company).to eq(params[:application][:next_step])
+        expect(application.company).to eq(params[:application][:status])
+      end
+
+      it "returns the new Application" do
+
+      end
+    end
   end
 
 end
