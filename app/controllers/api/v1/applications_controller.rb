@@ -22,11 +22,33 @@ class Api::V1::ApplicationsController < ApplicationController
   end
 
   def create
-
+    @user = User.find_by(id: params[:user_id])
+    if @user.id == current_user.id
+      @application = @user.applications.new(application_params)
+      if @application.save
+        render 'applications/application.json.jbuilder', application: @application
+      else
+        render json: {
+          errors: @application.errors.full_messages
+        }, status: 500
+      end
+    else
+      render json: {
+        errors: [
+          {message: "You do not have permission to add applications to this user's dashboard."}
+        ]
+      }, status: 403
+    end
   end
 
   def update
 
+  end
+
+  private
+
+  def application_params
+    params.require(:application).permit(:company, :contact_name, :contact_title, :date, :action, :first_contact, :job_title, :job_url, :notes, :complete, :next_step, :status)
   end
 
 end
