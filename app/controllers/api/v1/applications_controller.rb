@@ -14,9 +14,9 @@ class Api::V1::ApplicationsController < ApplicationController
       render 'applications/application.json.jbuilder', application: @application
     else
       render json: {
-        errors: [
-          {message: "Page not found"}
-        ]
+        errors: {
+          message: "Page not found"
+        }
       }, status: 404
     end
   end
@@ -62,9 +62,17 @@ class Api::V1::ApplicationsController < ApplicationController
   end
 
   def destroy
-    Application.find_by(id: params[:id]).destroy
-    @applications = User.find_by(id: params[:user_id])&.applications
-    render 'applications/applications.json.jbuilder', applications: @applications
+    application = Application.find_by(id: params[:id])
+    if application
+      application.destroy
+      head :no_content
+    else
+      render json: {
+        errors: {
+          message: "Page not found"
+        }
+      }, status: 404
+    end
   end
 
   private

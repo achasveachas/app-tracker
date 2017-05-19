@@ -101,7 +101,7 @@ RSpec.describe "API::V1::Applications", type: :request do
           body = JSON.parse(response.body)
 
           expect(response.status).to eq(404)
-          expect(body["errors"]).to eq([{"message"=> "Page not found"}])
+          expect(body["errors"]).to eq({"message"=> "Page not found"})
 
         end
       end
@@ -212,16 +212,13 @@ RSpec.describe "API::V1::Applications", type: :request do
 
       describe "on success" do
 
-        it "deletes the application and returns the new list of applications" do
+        it "deletes the application and returns a status of 204" do
           delete "/api/v1/users/#{@user.id}/applications/#{@application.id}",
             headers: @token_headers
 
-          body = JSON.parse(response.body)
 
           expect(Application.find_by(id: @application.id)).to eq(nil)
-          expect(response.status).to eq(200)
-          expect(body['applications']).to be_an(Array)
-          expect(body['applications'].size).to eq(2)
+          expect(response.status).to eq(204)
 
         end
 
@@ -230,12 +227,14 @@ RSpec.describe "API::V1::Applications", type: :request do
       describe "on failure" do
         it "returns a status of 404 with an error message" do
 
-          get "/api/v1/users/#{@user.id}/applications/fakeid"
+          delete "/api/v1/users/#{@user.id}/applications/fakeid",
+            headers: @token_headers
+
 
           body = JSON.parse(response.body)
-
+          binding.pry
           expect(response.status).to eq(404)
-          expect(body["errors"]).to eq([{"message"=> "Page not found"}])
+          expect(body["errors"]).to eq({"message"=> "Page not found"})
 
         end
       end
