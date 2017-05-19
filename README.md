@@ -14,7 +14,7 @@ The test suite was built using [RSpec](http://rspec.info/about/).
 
 ### Usage
 
-This root API endpoint can be found at https://sleepy-cove-46703.herokuapp.com/api/v1
+This root API endpoint can be found at https://app-tracker-api.herokuapp.com/api/v1/
 
 Detailed instructions will be added once the app is finished. Until then a brief overview is provided below:
 
