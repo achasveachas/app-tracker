@@ -14,6 +14,8 @@ The test suite was built using [RSpec](http://rspec.info/about/).
 
 ### Usage
 
+* [Documentation](doc/documentation.md)
+
 This root API endpoint can be found at https://app-tracker-api.herokuapp.com/api/v1/
 
 Detailed instructions will be added once the app is finished. Until then a brief overview is provided below:
