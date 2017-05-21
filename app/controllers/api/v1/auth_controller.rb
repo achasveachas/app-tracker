@@ -6,13 +6,13 @@ class Api::V1::AuthController < ApplicationController
     if !@user
       render json: {
         errors: ["Unable to find user with that username"]
-      }, status: 500
+      }, status: 403
     elsif @user&.authenticate(params[:user][:password])
       render 'users/user_with_token.json.jbuilder', user: @user
     else
       render json: {
         errors: ["Password does not match"]
-      }, status: 500
+      }, status: 403
     end
   end
 
