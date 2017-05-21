@@ -45,7 +45,7 @@ Logging in is accomplished via `POST` request to `/auth`
 }
 ```
 The response will be a user object with a token that can be used for future authentication:
-```
+```javasript
 {
   user: {
     id: [USER_ID],
