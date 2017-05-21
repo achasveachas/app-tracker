@@ -45,7 +45,7 @@ Logging in is accomplished via `POST` request to `/auth`
 }
 ```
 The response will be a user object with a token that can be used for future authentication:
-```javasript
+```
 {
   user: {
     id: [USER_ID],
@@ -63,3 +63,44 @@ Sending a bad username/password will return a `403` with an error:
 ```
 #### Refresh
 If you already have a token and want to retrieve the user information, send an authenticated `POST` request to `/auth/refresh`. The response will be the same as for the login request.
+
+## Users
+#### Sign Up
+Creating a new user is accomplished via `POST` request to `/users`:
+```
+{
+  user: {
+    username: [USERNAME],
+    name: [NAME] (optional),
+    password: [PASSOWRD]
+  }
+}
+```
+The response will be the new User with a token:
+```
+{
+  user: {
+    id: [USER_ID],
+    username: [USERNAME],
+    name: [NAME]
+  },
+  token: [TOKEN]
+}
+```
+Sending invalid credentials will return a `500` status and array of errors:
+```
+{
+  errors: [ERROR_MESSAGES]
+}
+```
+#### Show User
+To get the informationfor an (unauthenticated) user, send a `GET` request to `/users/:user_id`, the server will respond with a User object:
+```
+{
+  user: {
+    id: [USER_ID],
+    username: [USERNAME],
+    name: [NAME]
+  }
+}
+```
