@@ -14,17 +14,12 @@ The test suite was built using [RSpec](http://rspec.info/about/).
 
 ### Usage
 
-* [Documentation](doc/documentation.md)
 
 This root API endpoint can be found at https://app-tracker-api.herokuapp.com/api/v1/
 
-Detailed instructions will be added once the app is finished. Until then a brief overview is provided below:
+Detailed instructionscan be found in the documentation:
 
-The API uses RESTful patterns to access users through `/users`. Users' applications can be accessed by nesting `/applications` routes under the `/users` routes like this: `/users/:id/applications`.
-
-User authentication is accomplished through a token that is sent back when a user signs in using their username and password via a `POST` request to `/auth`.
-
-On refresh, the user's information can be retrieved by sending the token via a `POST` request to `/auth/refresh`.
+* [Documentation](doc/documentation.md)
 
 ### Contributing
 
