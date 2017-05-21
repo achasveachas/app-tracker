@@ -104,3 +104,102 @@ To get the informationfor an (unauthenticated) user, send a `GET` request to `/u
   }
 }
 ```
+## Applications
+Application routes are nested under the User they belong to (`/users/:user_id/applications`)
+#### index
+To see all of the Applications belonging to a User send a `GET` request to `/users/:user_id/applications`. The response will be an array of Application objects:
+```
+{
+  applications: [
+    {
+      "id": [APPLICATION_ID],
+      "user_id": [USER_ID],
+      "company": [COMPANY],
+      "contact_name": [CONTACT_NAME],
+      "contact_title": [CONTACT_TITLE],
+      "date": [DATE],
+      "action": [ACTION],
+      "first_contact": [FIRST_CONTACT],
+      "job_title": [JOB_TITLE],
+      "job_url": [URL],
+      "notes": [NOTES],
+      "complete": [COMPLETE],
+      "next_step": [NEXT_STEP],
+      "status": [STATUS],
+      "created_at": [TIMESTAMP],
+      "updated_at": [TIMESTAMP]
+    }
+  ]
+}
+```
+#### Show
+To see an individual application send a `GET` request to `/users/:user_id/applications/:application_id`. The response will be an Application object:
+```
+{
+  application: {
+    "id": [APPLICATION_ID],
+    "user_id": [USER_ID],
+    "company": [COMPANY],
+    "contact_name": [CONTACT_NAME],
+    "contact_title": [CONTACT_TITLE],
+    "date": [DATE],
+    "action": [ACTION],
+    "first_contact": [FIRST_CONTACT],
+    "job_title": [JOB_TITLE],
+    "job_url": [URL],
+    "notes": [NOTES],
+    "complete": [COMPLETE],
+    "next_step": [NEXT_STEP],
+    "status": [STATUS],
+    "created_at": [TIMESTAMP],
+    "updated_at": [TIMESTAMP]
+  }
+}
+```
+#### Create/Update
+To Create a new Application send an authenticated `POST` request to `/users/:user_id/applications`.
+To update an existing Application send an authenticated `PATCH` request to `/users/:user_id/applications/:application_id`.
+
+```
+{
+  application: {
+    "company": [COMPANY],
+    "contact_name": [CONTACT_NAME],
+    "contact_title": [CONTACT_TITLE],
+    "date": [DATE],
+    "action": [ACTION],
+    "first_contact": [FIRST_CONTACT],
+    "job_title": [JOB_TITLE],
+    "job_url": [URL],
+    "notes": [NOTES],
+    "complete": [COMPLETE],
+    "next_step": [NEXT_STEP],
+    "status": [STATUS]
+  }
+}
+```
+In both cases, the response will be the created/updated Application object:
+```
+{
+  application: {
+    "id": [APPLICATION_ID],
+    "user_id": [USER_ID],
+    "company": [COMPANY],
+    "contact_name": [CONTACT_NAME],
+    "contact_title": [CONTACT_TITLE],
+    "date": [DATE],
+    "action": [ACTION],
+    "first_contact": [FIRST_CONTACT],
+    "job_title": [JOB_TITLE],
+    "job_url": [URL],
+    "notes": [NOTES],
+    "complete": [COMPLETE],
+    "next_step": [NEXT_STEP],
+    "status": [STATUS],
+    "created_at": [TIMESTAMP],
+    "updated_at": [TIMESTAMP]
+  }
+}
+```
+#### Delete
+To delete an Application send an authenticated `DELETE` request to `/users/:user_id/applications/:application_id`. The response will be a `204` status.
