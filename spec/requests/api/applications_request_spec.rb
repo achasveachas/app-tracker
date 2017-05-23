@@ -232,7 +232,6 @@ RSpec.describe "API::V1::Applications", type: :request do
 
 
           body = JSON.parse(response.body)
-          binding.pry
           expect(response.status).to eq(404)
           expect(body["errors"]).to eq({"message"=> "Page not found"})
 
