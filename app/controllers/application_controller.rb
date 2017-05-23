@@ -2,12 +2,6 @@ class ApplicationController < ActionController::API
 
   helper_method :authenticate_token!, :current_user
 
-  def ping
-    render json: {
-      status: "OK"
-    }
-  end
-
   private
 
   def authenticate_token!
