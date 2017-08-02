@@ -31,7 +31,7 @@ Sending an invalid token will return the error `{message: "Token is invalid"}`
 
 ## Routes
 
-The App Tracker API uses standard RESTful routing, hee is an overview of the available routes:
+The App Tracker API uses standard RESTful routing, here is an overview of the available routes:
 
 #### Authentication
 
@@ -94,7 +94,7 @@ Sending invalid credentials will return a `500` status and array of errors:
 }
 ```
 #### Show User
-To get the informationfor an (unauthenticated) user, send a `GET` request to `/users/:user_id`, the server will respond with a User object:
+To get the information for an (unauthenticated) user, send a `GET` request to `/users/:user_id`, the server will respond with a User object:
 ```
 {
   user: {
@@ -106,7 +106,7 @@ To get the informationfor an (unauthenticated) user, send a `GET` request to `/u
 ```
 ## Applications
 Application routes are nested under the User they belong to (`/users/:user_id/applications`)
-#### index
+#### Index
 To see all of the Applications belonging to a User send a `GET` request to `/users/:user_id/applications`. The response will be an array of Application objects:
 ```
 {
@@ -157,7 +157,7 @@ To see an individual application send a `GET` request to `/users/:user_id/applic
 }
 ```
 #### Create/Update
-To Create a new Application send an authenticated `POST` request to `/users/:user_id/applications`.
+To create a new Application send an authenticated `POST` request to `/users/:user_id/applications`.
 To update an existing Application send an authenticated `PATCH` request to `/users/:user_id/applications/:application_id`.
 
 ```
