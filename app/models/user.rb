@@ -7,6 +7,6 @@ class User < ApplicationRecord
   validates :password, length: {minimum: 8}
 
   before_validation do
-    self.name = self.name.capitalize if self.name
+    self.name = self.name.titleize  if self.name
   end
 end
