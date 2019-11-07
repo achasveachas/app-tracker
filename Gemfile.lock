@@ -51,11 +51,11 @@ GEM
       dotenv (= 2.5.0)
       railties (>= 3.2, < 6.0)
     erubis (2.7.0)
-    factory_girl (4.9.0)
-      activesupport (>= 3.0.0)
-    factory_girl_rails (4.9.0)
-      factory_girl (~> 4.9.0)
-      railties (>= 3.0.0)
+    factory_bot (5.1.1)
+      activesupport (>= 4.2.0)
+    factory_bot_rails (5.1.1)
+      factory_bot (~> 5.1.0)
+      railties (>= 4.2.0)
     faker (1.9.1)
       i18n (>= 0.7)
     ffi (1.9.25)
@@ -167,7 +167,7 @@ DEPENDENCIES
   bcrypt (~> 3.1.7)
   byebug
   dotenv-rails
-  factory_girl_rails
+  factory_bot_rails
   faker
   jbuilder (~> 2.5)
   jwt (~> 1.5.6)
@@ -184,4 +184,4 @@ DEPENDENCIES
   tzinfo-data
 
 BUNDLED WITH
-   1.16.2
+   1.17.2
